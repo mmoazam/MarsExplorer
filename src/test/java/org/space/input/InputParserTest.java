@@ -3,8 +3,12 @@ package org.space.input;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.space.CompassDirection;
 import org.space.Instruction;
 import org.space.PlateauSize;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
 
@@ -15,8 +19,8 @@ class InputParserTest {
         PlateauSize plateauSize = InputParser.parsePlateauSize(input);
 
         Assertions.assertNotNull(plateauSize);
-        Assertions.assertEquals(5, plateauSize.getWidth());
-        Assertions.assertEquals(7, plateauSize.getHeight());
+        assertEquals(5, plateauSize.getWidth());
+        assertEquals(7, plateauSize.getHeight());
 
     }
 
@@ -25,7 +29,7 @@ class InputParserTest {
     void testParsePlateauSize_InvalidFormat() {
         String input = "5";
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parsePlateauSize(input);
         });
     }
@@ -35,7 +39,7 @@ class InputParserTest {
     void testParsePlateauSize_NonNumericInput() {
         String input = "5 a";
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parsePlateauSize(input);
         });
     }
@@ -44,12 +48,12 @@ class InputParserTest {
     @DisplayName("PlateauSize given negative number should throw IllegalArgumentException")
     void testParsePlateauSize_NegativeInput() {
         String inputHeight = "5 -7";
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parsePlateauSize(inputHeight);
         });
 
         String inputWidth = "-5 7";
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parsePlateauSize(inputWidth);
         });
     }
@@ -78,7 +82,7 @@ class InputParserTest {
     void parseInstruction_InvalidInput() {
         String input = "LRQML";
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parseInstruction(input);
         });
     }
@@ -88,7 +92,7 @@ class InputParserTest {
     void parseInstruction_EmptyInput() {
         String input = "";
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parseInstruction(input);
         });
     }
@@ -98,7 +102,7 @@ class InputParserTest {
     void parseInstruction_NullInput() {
         String input = null;
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InputParser.parseInstruction(input);
         });
     }
@@ -106,6 +110,58 @@ class InputParserTest {
 
     @org.junit.jupiter.api.Test
     void parseCompassDirection() {
+    }
+
+    @Test
+    @DisplayName("ParseCompassDirection valid compass direction string")
+    public void testParseCompassDirection_ValidInput() {
+        // Arrange & Act
+        CompassDirection directionN = InputParser.parseCompassDirection("N");
+        CompassDirection directionE = InputParser.parseCompassDirection("E");
+        CompassDirection directionS = InputParser.parseCompassDirection("S");
+        CompassDirection directionW = InputParser.parseCompassDirection("W");
+
+        // Assert
+        assertEquals(CompassDirection.N, directionN);
+        assertEquals(CompassDirection.E, directionE);
+        assertEquals(CompassDirection.S, directionS);
+        assertEquals(CompassDirection.W, directionW);
+    }
+
+    @Test
+    @DisplayName("ParseCompassDirection null input string by throwing an exception.")
+    public void testParseCompassDirection_NullInput() {
+        // Arrange
+        String input = null;
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parseCompassDirection(input);
+        });
+    }
+
+    @Test
+    @DisplayName("ParseCompassDirection empty input string  throws exception")
+    public void testParseCompassDirection_EmptyInput() {
+        // Arrange
+        String input = "";
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parseCompassDirection(input);
+        });
+    }
+
+    @Test
+    @DisplayName("ParseCompassDirection invalid input")
+    public void testParseCompassDirection_InvalidInput() {
+        // Arrange
+        String input = "X"; // Invalid direction
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parseCompassDirection(input);
+        });
     }
 
     @org.junit.jupiter.api.Test

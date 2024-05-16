@@ -58,7 +58,14 @@ public class InputParser {
     }
 
     public  static CompassDirection parseCompassDirection(String input){
-        return null;
+        ifNullOrEmptyThenThrow(input);
+        return switch (input) {
+            case "N" -> CompassDirection.N;
+            case "E" -> CompassDirection.E;
+            case "S" -> CompassDirection.S;
+            case "W" -> CompassDirection.W;
+            default -> throw new IllegalArgumentException("Invalid direction: " + input);
+        };
     }
 
     public static Position parsePosition(String input){
