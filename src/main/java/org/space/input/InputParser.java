@@ -35,9 +35,26 @@ public class InputParser {
         }
     }
 
-    public static Instruction parseInstruction(String input){
-
-        return null;
+    public static Instruction[] parseInstruction(String input){
+        ifNullOrEmptyThenThrow(input);
+        Instruction[] instructions = new Instruction[input.length()];
+        for (int i = 0; i < input.length(); i++) {
+            char instructionChar = Character.toUpperCase(input.charAt(i));
+            switch (instructionChar) {
+                case 'L':
+                    instructions[i] = Instruction.L;
+                    break;
+                case 'R':
+                    instructions[i] = Instruction.R;
+                    break;
+                case 'M':
+                    instructions[i] = Instruction.M;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid instruction" + instructionChar);
+            }
+        }
+        return instructions;
     }
 
     public  static CompassDirection parseCompassDirection(String input){
