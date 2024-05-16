@@ -17,8 +17,11 @@ class RoverTest {
         Position position = new Position(0,0, CompassDirection.N);
         Rover rover = new Rover(position);
 
-        // Start now and rotate left
-        Assertions.assertEquals(CompassDirection.W, rover.rotate(Instruction.L));
+        rover.rotate(Instruction.L);
+        //Assertions.assertEquals(CompassDirection.W, rover.rotate(Instruction.L));
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
     }
 
     @Test
@@ -26,9 +29,11 @@ class RoverTest {
     void rotateLeftFromWest() {
         Position position = new Position(0,0, CompassDirection.W);
         Rover rover = new Rover(position);
+        rover.rotate(Instruction.L);
 
-        // Start now and rotate left
-        Assertions.assertEquals(CompassDirection.S, rover.rotate(Instruction.L));
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.S);
     }
 
     @Test
@@ -37,8 +42,11 @@ class RoverTest {
         Position position = new Position(0,0, CompassDirection.S);
         Rover rover = new Rover(position);
 
-        // Start now and rotate left
-        Assertions.assertEquals(CompassDirection.E, rover.rotate(Instruction.L));
+        rover.rotate(Instruction.L);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.E);
     }
 
     @Test
@@ -47,8 +55,11 @@ class RoverTest {
         Position position = new Position(0,0, CompassDirection.E);
         Rover rover = new Rover(position);
 
-        // Start now and rotate left
-        Assertions.assertEquals(CompassDirection.N, rover.rotate(Instruction.L));
+        rover.rotate(Instruction.L);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.N);
     }
 
 
@@ -57,8 +68,12 @@ class RoverTest {
     void rotateRightFromNorth() {
         Position position = new Position(0,0, CompassDirection.N);
         Rover rover = new Rover(position);
-        // Start north and rotate right
-        Assertions.assertEquals(CompassDirection.E, rover.rotate(Instruction.R));
+
+        rover.rotate(Instruction.R);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.E);
     }
 
     @Test
@@ -66,8 +81,12 @@ class RoverTest {
     void rotateRightFromEast() {
         Position position = new Position(0,0, CompassDirection.E);
         Rover rover = new Rover(position);
-        // Start north and rotate right
-        Assertions.assertEquals(CompassDirection.S, rover.rotate(Instruction.R));
+
+        rover.rotate(Instruction.R);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.S);
     }
 
     @Test
@@ -75,8 +94,12 @@ class RoverTest {
     void rotateRightFromSouth() {
         Position position = new Position(0,0, CompassDirection.S);
         Rover rover = new Rover(position);
-        // Start north and rotate right
-        Assertions.assertEquals(CompassDirection.W, rover.rotate(Instruction.R));
+
+        rover.rotate(Instruction.R);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
     }
 
     @Test
@@ -84,8 +107,12 @@ class RoverTest {
     void rotateRightFromWest() {
         Position position = new Position(0,0, CompassDirection.W);
         Rover rover = new Rover(position);
-        // Start north and rotate right
-        Assertions.assertEquals(CompassDirection.N, rover.rotate(Instruction.R));
+
+        rover.rotate(Instruction.R);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.N);
     }
 
     @Test
@@ -93,16 +120,24 @@ class RoverTest {
     void rotateRightFromWestAndGetInstructionM() {
         Position position = new Position(0,0, CompassDirection.W);
         Rover rover = new Rover(position);
-        // Start north and rotate right
-        Assertions.assertEquals(CompassDirection.W, rover.rotate(Instruction.M));
+
+        rover.rotate(Instruction.M);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
     }
 
     @Test
     @DisplayName("start facing west and passed null should not change direction")
-    void rotateRightFromWestAndGetInsructionM() {
+    void rotateRightFromWestAndNull() {
         Position position = new Position(0,0, CompassDirection.W);
         Rover rover = new Rover(position);
-        // Start north and rotate right
-        Assertions.assertEquals(CompassDirection.W, rover.rotate(null));
+
+        rover.rotate(null);
+
+        Assertions.assertEquals(rover.position.getX(), 0);
+        Assertions.assertEquals(rover.position.getY(), 0);
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
     }
 }

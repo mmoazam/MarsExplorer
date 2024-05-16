@@ -22,6 +22,7 @@ Position position;
         }else {
             nextDirection = rotateRight(currentlyFacing);
         }
+
         return nextDirection;
     }
 
