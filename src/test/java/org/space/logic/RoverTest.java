@@ -96,4 +96,13 @@ class RoverTest {
         // Start north and rotate right
         Assertions.assertEquals(CompassDirection.W, rover.rotate(Instruction.M));
     }
+
+    @Test
+    @DisplayName("start facing west and passed null should not change direction")
+    void rotateRightFromWestAndGetInsructionM() {
+        Position position = new Position(0,0, CompassDirection.W);
+        Rover rover = new Rover(position);
+        // Start north and rotate right
+        Assertions.assertEquals(CompassDirection.W, rover.rotate(null));
+    }
 }
