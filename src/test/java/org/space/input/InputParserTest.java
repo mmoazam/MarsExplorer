@@ -35,6 +35,17 @@ class InputParserTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {InputParser.parsePlateauSize(input);});
     }
 
+    @Test
+    @DisplayName("PlateauSize given negative number should throw IllegalArgumentException")
+    void testParsePlateauSize_NegativeInput(){
+        String inputHeight = "5 -7";
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {InputParser.parsePlateauSize(inputHeight);});
+
+        String inputWidth = "-5 7";
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {InputParser.parsePlateauSize(inputWidth);});
+    }
+
+
     @org.junit.jupiter.api.Test
     void parseInstruction() {
     }

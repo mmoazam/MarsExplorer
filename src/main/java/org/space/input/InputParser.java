@@ -26,6 +26,9 @@ public class InputParser {
         try {
             int width = Integer.parseInt(parts[0]);
             int height = Integer.parseInt(parts[1]);
+            if(width < 0 || height < 0){
+                throw new IllegalArgumentException("Invalid plateau cannot be negative");
+            }
             return new PlateauSize(width, height);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("Invalid plateau size dimensions");
