@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.space.CompassDirection;
 import org.space.Instruction;
 import org.space.PlateauSize;
+import org.space.Position;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class InputParserTest {
 
@@ -18,7 +18,7 @@ class InputParserTest {
 
         PlateauSize plateauSize = InputParser.parsePlateauSize(input);
 
-        Assertions.assertNotNull(plateauSize);
+        assertNotNull(plateauSize);
         assertEquals(5, plateauSize.getWidth());
         assertEquals(7, plateauSize.getHeight());
 
@@ -108,10 +108,6 @@ class InputParserTest {
     }
 
 
-    @org.junit.jupiter.api.Test
-    void parseCompassDirection() {
-    }
-
     @Test
     @DisplayName("ParseCompassDirection valid compass direction string")
     public void testParseCompassDirection_ValidInput() {
@@ -164,7 +160,79 @@ class InputParserTest {
         });
     }
 
-    @org.junit.jupiter.api.Test
-    void parsePosition() {
+    @Test
+    public void testParsePosition_ValidInput() {
+        // Arrange
+        String input = "2 3 N";
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        // Act
+        Position position = InputParser.parsePosition(input, plateauSize);
+
+        // Assert
+        assertNotNull(position);
+        assertEquals(2, position.getX());
+        assertEquals(3, position.getY());
+        assertEquals(CompassDirection.N, position.getFacing());
+    }
+
+    @Test
+    public void testParsePosition_NullInput() {
+        // Arrange
+        String input = null;
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parsePosition(input, plateauSize);
+        });
+    }
+
+    @Test
+    public void testParsePosition_EmptyInput() {
+        // Arrange
+        String input = "";
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parsePosition(input, plateauSize);
+        });
+    }
+
+    @Test
+    public void testParsePosition_InvalidFormat() {
+        // Arrange
+        String input = "2 3 N E"; // Invalid format
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parsePosition(input, plateauSize);
+        });
+    }
+
+    @Test
+    public void testParsePosition_OutOfBounds() {
+        // Arrange
+        String input = "6 3 N"; // Out of bounds
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parsePosition(input, plateauSize);
+        });
+    }
+
+    @Test
+    public void testParsePosition_InvalidDirection() {
+        // Arrange
+        String input = "2 3 X"; // Invalid direction
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parsePosition(input, plateauSize);
+        });
     }
 }

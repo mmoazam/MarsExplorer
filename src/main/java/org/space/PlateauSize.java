@@ -1,6 +1,7 @@
 package org.space;
 
 public class PlateauSize {
+
     private int width;
     private int height;
 
