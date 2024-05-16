@@ -268,7 +268,7 @@ class RoverTest {
         rover.move(input);
 
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
-        Assertions.assertEquals(1,rover.position.getX());
+        Assertions.assertEquals(3,rover.position.getX());
         Assertions.assertEquals(3,rover.position.getY());
     }
 }

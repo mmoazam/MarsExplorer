@@ -61,10 +61,10 @@ public class Rover {
     }
 
     public void move(String moveInstructionString) {
+
+        if(moveInstructionString.isEmpty()) return;
+
         Instruction[] instructions = InputParser.parseInstruction(moveInstructionString);
-        if (instructions == null || instructions.length == 0  ) {
-            return;
-        }
 
         for (int i = 0; i < instructions.length; i++) {
             Instruction doThis = instructions[i];
