@@ -14,12 +14,12 @@ class RoverTest {
     @Test
     @DisplayName("start facing north and rotate left")
     void rotateLeft() {
-        Position position = new Position(0,0, CompassDirection.N);
+        Position position = new Position(1,0, CompassDirection.N);
         Rover rover = new Rover(position);
 
         rover.rotate(Instruction.L);
-        //Assertions.assertEquals(CompassDirection.W, rover.rotate(Instruction.L));
-        Assertions.assertEquals(rover.position.getX(), 0);
+
+        Assertions.assertEquals(rover.position.getX(), 1);
         Assertions.assertEquals(rover.position.getY(), 0);
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
     }
@@ -29,6 +29,7 @@ class RoverTest {
     void rotateLeftFromWest() {
         Position position = new Position(0,0, CompassDirection.W);
         Rover rover = new Rover(position);
+
         rover.rotate(Instruction.L);
 
         Assertions.assertEquals(rover.position.getX(), 0);
