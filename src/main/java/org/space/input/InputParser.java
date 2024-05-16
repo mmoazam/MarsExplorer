@@ -69,7 +69,22 @@ public class InputParser {
     }
 
     public static Position parsePosition(String input){
-        return null;
+        ifNullOrEmptyThenThrow(input);
+
+        String[] parts = input.split(" ");
+
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Invalid position format");
+        }
+
+        try {
+            int x = Integer.parseInt(parts[0]);
+            int y = Integer.parseInt(parts[1]);
+            CompassDirection facing = parseCompassDirection(parts[2]);
+            return new Position(x, y, facing);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid position coordinates");
+        }
     }
 
 }
