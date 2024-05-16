@@ -3,26 +3,28 @@ package org.space.logic;
 import org.space.CompassDirection;
 import org.space.Instruction;
 import org.space.Position;
+import org.space.input.InputParser;
 
 public class Rover {
-Position position;
+
+    Position position;
 
     public Rover(Position position) {
         this.position = position;
     }
 
-    public void rotate(Instruction instruction){
+    public void rotate(Instruction instruction) {
 
         var currentlyFacing = position.getFacing();
 
         if (instruction == Instruction.L) {
             position.setFacing(rotateLeft(currentlyFacing));
-        }else if (instruction == Instruction.R) {
+        } else if (instruction == Instruction.R) {
             position.setFacing(rotateRight(currentlyFacing));
         }
     }
 
-    private CompassDirection rotateLeft(CompassDirection currentlyFacing){
+    private CompassDirection rotateLeft(CompassDirection currentlyFacing) {
         switch (currentlyFacing) {
             case N:
                 currentlyFacing = CompassDirection.W;
@@ -40,7 +42,7 @@ Position position;
         return currentlyFacing;
     }
 
-    private CompassDirection rotateRight(CompassDirection currentlyFacing){
+    private CompassDirection rotateRight(CompassDirection currentlyFacing) {
         switch (currentlyFacing) {
             case N:
                 currentlyFacing = CompassDirection.E;
@@ -56,5 +58,34 @@ Position position;
                 break;
         }
         return currentlyFacing;
+    }
+
+    public void move(String moveInstructionString) {
+        Instruction[] instructions = InputParser.parseInstruction(moveInstructionString);
+        if (instructions.length == 0 || instructions == null) {
+            return;
+        }
+
+        for (int i = 0; i < instructions.length; i++) {
+            Instruction doThis = instructions[i];
+            if (doThis == Instruction.R || doThis == Instruction.L) {
+                rotate(doThis);
+            } else if (doThis == Instruction.M) {
+                moveForward(doThis);
+            }
+        }
+    }
+
+    private void moveForward(Instruction instruction) {
+        var currentFacingDirection = position.getFacing();
+        switch (currentFacingDirection) {
+            case N -> position.setY(position.getY() + 1);
+            case E -> position.setX(position.getX() + 1);
+            case S -> position.setY(position.getY() - 1);
+            case W -> position.setX(position.getX() - 1);
+            default -> {
+                return;
+            }
+        }
     }
 }
