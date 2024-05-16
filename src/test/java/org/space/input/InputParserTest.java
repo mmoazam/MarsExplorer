@@ -125,6 +125,24 @@ class InputParserTest {
     }
 
     @Test
+    @DisplayName("ParseCompassDirection valid compass direction string")
+    public void testParseCompassDirection_ValidLowerCaseInput() {
+        // Arrange & Act
+        CompassDirection directionN = InputParser.parseCompassDirection("n");
+        CompassDirection directionE = InputParser.parseCompassDirection("e");
+        CompassDirection directionS = InputParser.parseCompassDirection("s");
+        CompassDirection directionW = InputParser.parseCompassDirection("w");
+
+        // Assert
+        assertEquals(CompassDirection.N, directionN);
+        assertEquals(CompassDirection.E, directionE);
+        assertEquals(CompassDirection.S, directionS);
+        assertEquals(CompassDirection.W, directionW);
+    }
+
+
+
+    @Test
     @DisplayName("ParseCompassDirection null input string by throwing an exception.")
     public void testParseCompassDirection_NullInput() {
         // Arrange

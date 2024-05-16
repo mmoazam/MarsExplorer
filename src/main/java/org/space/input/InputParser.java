@@ -61,7 +61,8 @@ public class InputParser {
 
     public static CompassDirection parseCompassDirection(String input) {
         ifNullOrEmptyThenThrow(input);
-        return switch (input) {
+        String direction = input.toUpperCase();
+        return switch (direction) {
             case "N" -> CompassDirection.N;
             case "E" -> CompassDirection.E;
             case "S" -> CompassDirection.S;
