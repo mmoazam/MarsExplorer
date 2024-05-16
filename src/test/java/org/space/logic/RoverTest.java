@@ -257,4 +257,18 @@ class RoverTest {
         Assertions.assertEquals(1,rover.position.getX());
         Assertions.assertEquals(3,rover.position.getY());
     }
+
+    @Test
+    @DisplayName("empty move does not update position")
+    void emptyMoveDoesNotUpdatePosition() {
+        Position position = new Position(3, 3, CompassDirection.W);
+        Rover rover = new Rover(position);
+        String input = "";
+
+        rover.move(input);
+
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
+        Assertions.assertEquals(1,rover.position.getX());
+        Assertions.assertEquals(3,rover.position.getY());
+    }
 }
