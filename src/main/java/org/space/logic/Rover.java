@@ -12,9 +12,10 @@ Position position;
     }
 
     public CompassDirection rotate(Instruction instruction){
+
         var currentlyFacing = position.getFacing();
         CompassDirection nextDirection;
-        if(instruction == Instruction.M)
+        if(instruction == Instruction.M || instruction == null)
             return currentlyFacing;
         else if (instruction == Instruction.L) {
             nextDirection = rotateLeft(currentlyFacing);
