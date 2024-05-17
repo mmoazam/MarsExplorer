@@ -61,13 +61,12 @@ public class InputParser {
 
     public static CompassDirection parseCompassDirection(String input) {
         ifNullOrEmptyThenThrow(input);
-        String direction = input.toUpperCase();
-        return switch (direction) {
+        return switch (input) {
             case "N" -> CompassDirection.N;
             case "E" -> CompassDirection.E;
             case "S" -> CompassDirection.S;
             case "W" -> CompassDirection.W;
-            default -> throw new IllegalArgumentException("Invalid direction: " + input);
+            default -> throw new IllegalArgumentException("Invalid direction: should be one of N E S W given: " + input);
         };
     }
 
