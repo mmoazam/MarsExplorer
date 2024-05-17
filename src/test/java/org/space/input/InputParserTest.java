@@ -88,6 +88,16 @@ class InputParserTest {
     }
 
     @org.junit.jupiter.api.Test
+    @DisplayName("parseInstruction with lowercase string")
+    void parseInstruction_LowercaseInput() {
+        String input = "lmlmmr";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputParser.parseInstruction(input);
+        });
+    }
+
+    @org.junit.jupiter.api.Test
     @DisplayName("parseInstruction with empty input")
     void parseInstruction_EmptyInput() {
         String input = "";
