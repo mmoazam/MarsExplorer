@@ -2,6 +2,7 @@ package org.space.logic;
 
 import org.space.CompassDirection;
 import org.space.Instruction;
+import org.space.PlateauSize;
 import org.space.Position;
 import org.space.input.InputParser;
 
@@ -9,7 +10,7 @@ public class Rover {
 
     Position position;
 
-    public Rover(Position position) {
+    public Rover(Position position, PlateauSize plateauSize) {
         this.position = position;
     }
 
@@ -88,4 +89,18 @@ public class Rover {
             }
         }
     }
+
+    //private boolean isMoveSafe(Instruction instruction){
+    //    PlateauSize
+    //    var currentFacingDirection = position.getFacing();
+    //    switch (currentFacingDirection) {
+    //        case N -> position.setY(position.getY() + 1);
+    //        case E -> position.setX(position.getX() + 1);
+    //        case S -> position.setY(position.getY() - 1);
+    //        case W -> position.setX(position.getX() - 1);
+    //        default -> {
+    //            return false;
+    //        }
+    //    }
+    //}
 }

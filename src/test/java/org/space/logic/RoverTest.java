@@ -10,12 +10,13 @@ import org.space.Position;
 
 class RoverTest {
 
+   PlateauSize plateauSize = new PlateauSize(5,5);
 
     @Test
     @DisplayName("start facing north and rotate left")
     void rotateLeft() {
         Position position = new Position(1, 0, CompassDirection.N);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.L);
 
@@ -28,7 +29,7 @@ class RoverTest {
     @DisplayName("start facing west and rotate left")
     void rotateLeftFromWest() {
         Position position = new Position(0, 0, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.L);
 
@@ -41,7 +42,7 @@ class RoverTest {
     @DisplayName("start facing south and rotate left")
     void rotateLeftFromSouth() {
         Position position = new Position(0, 0, CompassDirection.S);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.L);
 
@@ -54,7 +55,7 @@ class RoverTest {
     @DisplayName("start facing east and rotate left")
     void rotateLeftFromEast() {
         Position position = new Position(0, 0, CompassDirection.E);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.L);
 
@@ -68,7 +69,7 @@ class RoverTest {
     @DisplayName("start facing north and rotate right")
     void rotateRightFromNorth() {
         Position position = new Position(0, 0, CompassDirection.N);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.R);
 
@@ -81,7 +82,7 @@ class RoverTest {
     @DisplayName("start facing east and rotate right")
     void rotateRightFromEast() {
         Position position = new Position(0, 0, CompassDirection.E);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.R);
 
@@ -94,7 +95,7 @@ class RoverTest {
     @DisplayName("start facing south and rotate right")
     void rotateRightFromSouth() {
         Position position = new Position(0, 0, CompassDirection.S);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.R);
 
@@ -107,7 +108,7 @@ class RoverTest {
     @DisplayName("start facing west and rotate right")
     void rotateRightFromWest() {
         Position position = new Position(0, 0, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.R);
 
@@ -120,7 +121,7 @@ class RoverTest {
     @DisplayName("start facing west and Instruction.M should not change direction")
     void rotateRightFromWestAndGetInstructionM() {
         Position position = new Position(0, 0, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(Instruction.M);
 
@@ -133,7 +134,7 @@ class RoverTest {
     @DisplayName("start facing west and passed null should not change direction")
     void rotateRightFromWestAndNull() {
         Position position = new Position(0, 0, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
 
         rover.rotate(null);
 
@@ -147,7 +148,7 @@ class RoverTest {
     @DisplayName("move north returns updated position")
     void moveOnceFacingNorthUpdatesPosition() {
         Position position = new Position(0, 0, CompassDirection.N);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "M";
 
         rover.move(input);
@@ -161,7 +162,7 @@ class RoverTest {
     @DisplayName("move east returns updated position")
     void moveOnceFacingEastUpdatesPosition() {
         Position position = new Position(3, 3, CompassDirection.E);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "M";
 
         rover.move(input);
@@ -175,7 +176,7 @@ class RoverTest {
     @DisplayName("move south returns updated position")
     void moveOnceFacingSouthUpdatesPosition() {
         Position position = new Position(3, 3, CompassDirection.S);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "M";
 
         rover.move(input);
@@ -189,7 +190,7 @@ class RoverTest {
     @DisplayName("move west returns updated position")
     void moveOnceFacingWestUpdatesPosition() {
         Position position = new Position(3, 3, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "M";
 
         rover.move(input);
@@ -204,7 +205,7 @@ class RoverTest {
     @DisplayName("move north twice returns updated position")
     void moveTwiceFacingNorthUpdatesPosition() {
         Position position = new Position(0, 0, CompassDirection.N);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "MM";
 
         rover.move(input);
@@ -218,7 +219,7 @@ class RoverTest {
     @DisplayName("move east twice returns updated position")
     void moveTwiceFacingEastUpdatesPosition() {
         Position position = new Position(3, 3, CompassDirection.E);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "MM";
 
         rover.move(input);
@@ -232,7 +233,7 @@ class RoverTest {
     @DisplayName("move south twice returns updated position")
     void moveTwiceFacingSouthUpdatesPosition() {
         Position position = new Position(3, 3, CompassDirection.S);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "MM";
 
         rover.move(input);
@@ -246,7 +247,7 @@ class RoverTest {
     @DisplayName("move west returns updated position")
     void moveTwiceFacingWestUpdatesPosition() {
         Position position = new Position(3, 3, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "MM";
 
         rover.move(input);
@@ -260,7 +261,7 @@ class RoverTest {
     @DisplayName("empty move does not update position")
     void emptyMoveDoesNotUpdatePosition() {
         Position position = new Position(3, 3, CompassDirection.W);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "";
 
         rover.move(input);
@@ -276,7 +277,7 @@ class RoverTest {
     void movingNorthOutOfBoundsStopsTheRover() {
         PlateauSize plateauSize = new PlateauSize(5,5);
         Position position = new Position(4,4,CompassDirection.N);
-        Rover rover = new Rover(position);
+        Rover rover = new Rover(position,plateauSize);
         String input = "MMMM";
 
         rover.move(input);
