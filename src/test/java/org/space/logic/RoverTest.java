@@ -383,4 +383,21 @@ class RoverTest {
         Assertions.assertEquals(3, rover.position.getY());
 
     }
+
+    // OUT OF BOUNDS TESTS
+    @Test
+    @DisplayName("Moving with right rotation outside boundary stops the rover")
+    void movingRightRotationOutsideBoundary() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(3,3,CompassDirection.N);
+        Rover rover = new Rover(position,plateauSize);
+        String input = "MRMMMMM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(CompassDirection.E, rover.position.getFacing());
+        Assertions.assertEquals(5, rover.position.getX());
+        Assertions.assertEquals(4, rover.position.getY());
+
+    }
 }
