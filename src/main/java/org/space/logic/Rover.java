@@ -75,7 +75,7 @@ public class Rover {
                 rotate(doThis);
             } else if (doThis == Instruction.M) {
                 if (isMoveSafe()){
-                    moveForward(doThis);
+                    moveForward();
                 } else {
                     System.out.println("Not safe to move forward. Stopping all movement");
                     return;
@@ -84,7 +84,7 @@ public class Rover {
         }
     }
 
-    private void moveForward(Instruction instruction) {
+    private void moveForward() {
         var currentFacingDirection = position.getFacing();
         switch (currentFacingDirection) {
             case N -> position.setY(position.getY() + 1);
@@ -103,20 +103,28 @@ public class Rover {
         var currentFacingDirection = position.getFacing();
         switch (currentFacingDirection) {
             case N:
-                if (position.getY() + 1 <= maxHeight) return true;
+                if (position.getY() + 1 > maxHeight){
+                    return false;
+                }
                 break;
             case E:
-                if (position.getX() + 1 <= maxWidth) return true;
+                if (position.getX() + 1 > maxWidth){
+                    return false;
+                }
                 break;
             case S:
-                if (position.getY() - 1 <= 0) return false;
+                if (position.getY() - 1 < 0) {
+                    return false;
+                }
                 break;
             case W:
-                if (position.getX() - 1 <= 0) return false;
+                if (position.getX() - 1 < 0){
+                    return false;
+                }
                 break;
             default:
                 return false;
         }
-        return false;
+        return true;
     }
 }
