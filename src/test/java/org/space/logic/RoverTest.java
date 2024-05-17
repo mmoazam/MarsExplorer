@@ -7,11 +7,9 @@ import org.space.CompassDirection;
 import org.space.Instruction;
 import org.space.PlateauSize;
 import org.space.Position;
-import org.space.input.InputParser;
 
 class RoverTest {
 
-    PlateauSize plateauSize = new PlateauSize(10, 10);
 
     @Test
     @DisplayName("start facing north and rotate left")
@@ -183,8 +181,8 @@ class RoverTest {
         rover.move(input);
 
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.S);
-        Assertions.assertEquals(3,rover.position.getX());
-        Assertions.assertEquals(2,rover.position.getY());
+        Assertions.assertEquals(3, rover.position.getX());
+        Assertions.assertEquals(2, rover.position.getY());
     }
 
     @Test
@@ -197,8 +195,8 @@ class RoverTest {
         rover.move(input);
 
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
-        Assertions.assertEquals(2,rover.position.getX());
-        Assertions.assertEquals(3,rover.position.getY());
+        Assertions.assertEquals(2, rover.position.getX());
+        Assertions.assertEquals(3, rover.position.getY());
     }
 
     // move twice
@@ -240,8 +238,8 @@ class RoverTest {
         rover.move(input);
 
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.S);
-        Assertions.assertEquals(3,rover.position.getX());
-        Assertions.assertEquals(1,rover.position.getY());
+        Assertions.assertEquals(3, rover.position.getX());
+        Assertions.assertEquals(1, rover.position.getY());
     }
 
     @Test
@@ -254,8 +252,8 @@ class RoverTest {
         rover.move(input);
 
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
-        Assertions.assertEquals(1,rover.position.getX());
-        Assertions.assertEquals(3,rover.position.getY());
+        Assertions.assertEquals(1, rover.position.getX());
+        Assertions.assertEquals(3, rover.position.getY());
     }
 
     @Test
@@ -268,7 +266,25 @@ class RoverTest {
         rover.move(input);
 
         Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
-        Assertions.assertEquals(3,rover.position.getX());
-        Assertions.assertEquals(3,rover.position.getY());
+        Assertions.assertEquals(3, rover.position.getX());
+        Assertions.assertEquals(3, rover.position.getY());
     }
+
+    // Implement out of bounds rover stops moving.
+    @Test
+    @DisplayName("Moving out of bounds stops the rover")
+    void movingNorthOutOfBoundsStopsTheRover() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(4,4,CompassDirection.N);
+        Rover rover = new Rover(position);
+        String input = "MMMM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.N);
+        Assertions.assertEquals(4, rover.position.getX());
+        Assertions.assertEquals(5, rover.position.getY());
+
+    }
+
 }
