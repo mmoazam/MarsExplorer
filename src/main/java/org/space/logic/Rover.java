@@ -74,7 +74,12 @@ public class Rover {
             if (doThis == Instruction.R || doThis == Instruction.L) {
                 rotate(doThis);
             } else if (doThis == Instruction.M) {
-                moveForward(doThis);
+                if (isMoveSafe()){
+                    moveForward(doThis);
+                } else {
+                    System.out.println("Not safe to move forward. Stopping all movement");
+                    return;
+                }
             }
         }
     }
@@ -92,17 +97,26 @@ public class Rover {
         }
     }
 
-    //private boolean isMoveSafe(Instruction instruction){
-    //    PlateauSize
-    //    var currentFacingDirection = position.getFacing();
-    //    switch (currentFacingDirection) {
-    //        case N -> position.setY(position.getY() + 1);
-    //        case E -> position.setX(position.getX() + 1);
-    //        case S -> position.setY(position.getY() - 1);
-    //        case W -> position.setX(position.getX() - 1);
-    //        default -> {
-    //            return false;
-    //        }
-    //    }
-    //}
+    private boolean isMoveSafe() {
+        int maxWidth = plateauSize.getWidth();
+        int maxHeight = plateauSize.getHeight();
+        var currentFacingDirection = position.getFacing();
+        switch (currentFacingDirection) {
+            case N:
+                if (position.getY() + 1 <= maxHeight) return true;
+                break;
+            case E:
+                if (position.getX() + 1 <= maxWidth) return true;
+                break;
+            case S:
+                if (position.getY() - 1 <= 0) return false;
+                break;
+            case W:
+                if (position.getX() - 1 <= 0) return false;
+                break;
+            default:
+                return false;
+        }
+        return false;
+    }
 }
