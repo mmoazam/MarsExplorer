@@ -41,7 +41,7 @@ public class InputParser {
         ifNullOrEmptyThenThrow(input);
         Instruction[] instructions = new Instruction[input.length()];
         for (int i = 0; i < input.length(); i++) {
-            char instructionChar = Character.toUpperCase(input.charAt(i));
+            char instructionChar = input.charAt(i);
             switch (instructionChar) {
                 case 'L':
                     instructions[i] = Instruction.L;

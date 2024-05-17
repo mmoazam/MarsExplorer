@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class UserInput {
 
     public static void main(String[] args) {
+
+
         System.out.println("hello from the mission control");
 
         Scanner scanner = new Scanner(System.in);
@@ -29,8 +31,9 @@ public class UserInput {
         rover2.move(moveInstructions2);
 
         // PRINT ROVER POSITIONS
-        rover.getPosition();
-        rover2.getPosition();
+
+        rover.printPosition();
+        rover2.printPosition();
 
     }
 
