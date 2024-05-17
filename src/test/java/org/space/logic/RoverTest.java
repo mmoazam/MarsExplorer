@@ -335,4 +335,52 @@ class RoverTest {
         Assertions.assertEquals(4, rover.position.getY());
 
     }
+
+    @Test
+    @DisplayName("Moving with left rotation inside boundary")
+    void movingWithLeftRotationInsideBoundary() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(3,3,CompassDirection.N);
+        Rover rover = new Rover(position,plateauSize);
+        String input = "MLM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(CompassDirection.W, rover.position.getFacing() );
+        Assertions.assertEquals(2, rover.position.getX());
+        Assertions.assertEquals(4, rover.position.getY());
+
+    }
+
+    @Test
+    @DisplayName("Moving with right rotation inside boundary")
+    void movingRightRotationInsideBoundary() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(3,3,CompassDirection.N);
+        Rover rover = new Rover(position,plateauSize);
+        String input = "MRM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(CompassDirection.E, rover.position.getFacing());
+        Assertions.assertEquals(4, rover.position.getX());
+        Assertions.assertEquals(4, rover.position.getY());
+
+    }
+
+    @Test
+    @DisplayName("Moving with right right rotation inside boundary")
+    void movingRightRightRotationInsideBoundary() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(3,3,CompassDirection.N);
+        Rover rover = new Rover(position,plateauSize);
+        String input = "MRRM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(CompassDirection.S, rover.position.getFacing());
+        Assertions.assertEquals(3, rover.position.getX());
+        Assertions.assertEquals(3, rover.position.getY());
+
+    }
 }
