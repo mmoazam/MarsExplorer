@@ -13,7 +13,6 @@ public class Rover {
     PlateauSize plateauSize;
 
     public Position getPosition() {
-        System.out.println(position.getX() + " " + position.getY() + " " + position.getFacing());
         return position;
     }
 
