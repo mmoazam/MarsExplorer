@@ -304,4 +304,35 @@ class RoverTest {
 
     }
 
+    @Test
+    @DisplayName("Moving south out of bounds stops the rover")
+    void movingSouthOutOfBoundsStopsTheRover() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(4,4,CompassDirection.S);
+        Rover rover = new Rover(position,plateauSize);
+        String input = "MMMMM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.S);
+        Assertions.assertEquals(4, rover.position.getX());
+        Assertions.assertEquals(0, rover.position.getY());
+
+    }
+
+    @Test
+    @DisplayName("Moving west out of bounds stops the rover")
+    void movingWestOutOfBoundsStopsTheRover() {
+        PlateauSize plateauSize = new PlateauSize(5,5);
+        Position position = new Position(4,4,CompassDirection.W);
+        Rover rover = new Rover(position,plateauSize);
+        String input = "MMMMM";
+
+        rover.move(input);
+
+        Assertions.assertEquals(rover.position.getFacing(), CompassDirection.W);
+        Assertions.assertEquals(0, rover.position.getX());
+        Assertions.assertEquals(4, rover.position.getY());
+
+    }
 }
