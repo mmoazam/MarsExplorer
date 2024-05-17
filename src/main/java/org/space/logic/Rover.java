@@ -8,8 +8,20 @@ import org.space.input.InputParser;
 
 public class Rover {
 
+
     Position position;
     PlateauSize plateauSize;
+
+    public Position getPosition() {
+        System.out.println(position.getX() + " " + position.getY() + " " + position.getFacing());
+        return position;
+    }
+
+    public void printPosition() {
+        System.out.println(position.getX() + " " + position.getY() + " " + position.getFacing());
+    }
+
+
 
     public Rover(Position position, PlateauSize plateauSize) {
         this.position = position;
