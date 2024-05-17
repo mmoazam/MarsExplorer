@@ -9,9 +9,11 @@ import org.space.input.InputParser;
 public class Rover {
 
     Position position;
+    PlateauSize plateauSize;
 
     public Rover(Position position, PlateauSize plateauSize) {
         this.position = position;
+        this.plateauSize = plateauSize;
     }
 
     public void rotate(Instruction instruction) {
