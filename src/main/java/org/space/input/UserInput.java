@@ -9,8 +9,10 @@ import java.util.Scanner;
 public class UserInput {
 
     public static void main(String[] args) {
+        run();
+    }
 
-
+    private static void run() {
         System.out.println("hello from the mission control");
 
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +36,6 @@ public class UserInput {
 
         rover.printPosition();
         rover2.printPosition();
-
     }
 
     private static PlateauSize createPlateau(Scanner lineScanner){

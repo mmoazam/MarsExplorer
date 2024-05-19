@@ -86,7 +86,8 @@ public class Rover {
                 if (isMoveSafe()){
                     moveForward();
                 } else {
-                    System.out.println("Not safe to move forward. Stopping all movement");
+                    System.out.println("Not %s safe to move forward. Stopping all movement at " +
+                            position.getX() + " " + position.getY() + " " + position.getFacing());
                     return;
                 }
             }

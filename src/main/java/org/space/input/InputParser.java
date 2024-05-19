@@ -22,7 +22,7 @@ public class InputParser {
         String[] parts = input.split(" ");
 
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Invalid plateau size format. Should like: 2 3");
+            throw new IllegalArgumentException("Invalid plateau size format. Should like: 2 3 ");
         }
 
         try {
@@ -33,7 +33,7 @@ public class InputParser {
             }
             return new PlateauSize(width, height);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid plateau size dimensions,I expect 2 positive integers like: 2 3");
+            throw new IllegalArgumentException("Invalid plateau size dimensions,I expect 2 positive integers like: 2 3 ");
         }
     }
 
@@ -53,7 +53,7 @@ public class InputParser {
                     instructions[i] = Instruction.M;
                     break;
                 default:
-                    throw new IllegalArgumentException("Invalid instruction letter. Allowed only L R M" + instructionChar);
+                    throw new IllegalArgumentException("Invalid instruction letter. Allowed only L R M " + instructionChar);
             }
         }
         return instructions;
@@ -82,14 +82,14 @@ public class InputParser {
         List<String> compassPoints = List.of(new String[]{"N", "E", "S", "W"});
         String faceTo = parts[2].toUpperCase();
         if (!compassPoints.contains(parts[2])) {
-            throw new IllegalArgumentException("Compass point is not one of N, E, S, W" + parts[2]);
+            throw new IllegalArgumentException("Compass point is not one of N, E, S, W given:-> " + parts[2]);
         }
 
         try {
             int x = Integer.parseInt(parts[0]);
             int y = Integer.parseInt(parts[1]);
             if (x < 0 || y < 0 || x >= plateauSize.getWidth() || y >= plateauSize.getHeight()) {
-                throw new IllegalArgumentException("The value given is not in plateau bounds" + input);
+                throw new IllegalArgumentException("The value given is not in plateau bounds " + input);
             }
             CompassDirection facing = parseCompassDirection(parts[2]);
             return new Position(x, y, facing);
